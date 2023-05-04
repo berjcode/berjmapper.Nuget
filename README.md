@@ -15,7 +15,7 @@ Errors are corrected as a result of feedback.
   dotnet add package 
 ```
 ```
-# Use  ListDto
+# Use  ProductDto
 var Product = new Product
 {
     Id = 1,
@@ -43,7 +43,7 @@ Console.WriteLine(convertedProduct.Name);
 ....
 
 ```
-## ListDto
+## ProductListDto
    
    var products = new List<Product>()
 {
@@ -65,7 +65,7 @@ foreach(var productListDto in convertedProductListDto)
 
 ....
 ```
-## CreateDto
+## ProductCreateDto
    
  Console.WriteLine("----------- Create Product  ------------");
 
