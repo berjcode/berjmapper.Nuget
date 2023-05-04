@@ -33,20 +33,39 @@ public class BerjMapper<TSource, TDestination>
         var destination = Activator.CreateInstance<TDestination>();
         var sourceProperties = typeof(TSource).GetProperties();
         var desinationProperties = typeof(TDestination).GetProperties();
-
         foreach (var sourceProperty in sourceProperties)
         {
             var desinationProperty = desinationProperties.FirstOrDefault(x => x.Name == sourceProperty.Name);
             if (desinationProperty != null && desinationProperty.PropertyType == sourceProperty.PropertyType)
-            {
                 desinationProperty.SetValue(destination, sourceProperty.GetValue(source));
-            }
 
         }
-
         return destination;
+    }
 
+    public List<TDestination> Map(List<TSource> source)
+    {
+        var destinationList = new List<TDestination>();
 
+        foreach (var sourceItem in source)
+        {
+            var destination = Activator.CreateInstance<TDestination>();
+            var sourceProperties = typeof(TSource).GetProperties();
+            var desinationProperties = typeof(TDestination).GetProperties();
+
+            foreach (var sourceProperty in sourceProperties)
+            {
+                var desinationProperty = desinationProperties.FirstOrDefault(x => x.Name == sourceProperty.Name);
+                if (desinationProperty != null && desinationProperty.PropertyType == sourceProperty.PropertyType)
+                {
+                    desinationProperty.SetValue(destination, sourceProperty.GetValue(sourceItem));
+                }
+            }
+
+            destinationList.Add(destination);
+        }
+
+        return destinationList;
     }
 
 
@@ -79,7 +98,6 @@ public class BerjMapper<TSource, TDestination>
                 sourceProperty.SetValue(source, destinationValue);
             }
         }
-
         return source;
     }
 }
