@@ -64,6 +64,7 @@ foreach(var productListDto in convertedProductListDto)
 ```
 
 ....
+```
 ## CreateDto
    
  Console.WriteLine("----------- Create Product  ------------");
@@ -86,18 +87,14 @@ Product product = berjMapper3.Map(productCreateDto);
 Console.WriteLine("Product ID: " + product.Id);
 Console.WriteLine("Product Name: " + product.Name);
 ```
+```
+
 
 ## Warning
-   * 
-   ```
-   No package is needed. Not recommended for large projects. Recommended for education and small projects.
-   It can give errors in complex objects.
-   ```
-## Packages
+   *  No package is needed. Not recommended for large projects. Recommended for education and small projects.
+   *   It can give errors in complex objects.
+  
 
-* 
-
- ### 
    
                                                                                                                      
    ###    By Abdullah Balikci - berjcode
