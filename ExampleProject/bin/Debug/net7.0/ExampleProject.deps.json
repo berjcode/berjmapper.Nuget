@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "ExampleProject/1.0.0": {
+        "dependencies": {
+          "berjmapper": "1.0.0"
+        },
+        "runtime": {
+          "ExampleProject.dll": {}
+        }
+      },
+      "berjmapper/1.0.0": {
+        "runtime": {
+          "berjmapper.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ExampleProject/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "berjmapper/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

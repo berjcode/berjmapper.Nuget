@@ -1,0 +1,12 @@
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\bin\Debug\net7.0\berjmapper.deps.json
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\bin\Debug\net7.0\berjmapper.dll
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\bin\Debug\net7.0\berjmapper.pdb
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.csproj.AssemblyReference.cache
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.AssemblyInfoInputs.cache
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.AssemblyInfo.cs
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.csproj.CoreCompileInputs.cache
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.dll
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\refint\berjmapper.dll
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\berjmapper.pdb
+C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\obj\Debug\net7.0\ref\berjmapper.dll
