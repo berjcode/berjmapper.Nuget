@@ -14,6 +14,7 @@ Errors are corrected as a result of feedback.
 
   dotnet add package 
 ```
+```
 # Use  ListDto
 var Product = new Product
 {
@@ -27,7 +28,7 @@ var berjMapper = new BerjMapper<Product, ProductDto>();
 var convertedproductDto = berjMapper.Map(Product); //+
 Console.WriteLine(convertedproductDto.Id);
 Console.WriteLine(convertedproductDto.Name);
-
+```
 ```
 ##  The Exact Opposite
 
@@ -40,6 +41,8 @@ Console.WriteLine(convertedProduct.Name);
 ```
     
 ....
+
+```
 ## ListDto
    
    var products = new List<Product>()
