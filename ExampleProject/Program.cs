@@ -16,7 +16,7 @@ var Product = new Product
 var ProductDtoToProduct = new ProductDto { Id = 2, Name = "Abdullah" };
 
 
-Console.WriteLine("----------- Converting Product to ProductListDto ------------");
+Console.WriteLine("----------- Converting Product to ProductDto ------------");
 
 var berjMapper = new BerjMapper<Product, ProductDto>();
 var convertedproductDto = berjMapper.Map(Product);
@@ -66,4 +66,25 @@ foreach(var productListDto in convertedProductListDto)
     Console.WriteLine(productListDto.Id);
     Console.WriteLine(productListDto.Name);
 }
- 
+
+
+
+Console.WriteLine("----------- Create Product  ------------");
+
+Console.Write("product ID Giriniz: ");
+int id = int.Parse(Console.ReadLine());
+
+Console.Write(" product name Giriniz: ");
+string name = Console.ReadLine();
+
+ProductCreateDto productCreateDto = new ProductCreateDto
+{
+    Id = id,
+    Name = name
+};
+
+var berjMapper3 = new BerjMapper<ProductCreateDto, Product>();
+Product product = berjMapper3.Map(productCreateDto);
+
+Console.WriteLine("Product ID: " + product.Id);
+Console.WriteLine("Product Name: " + product.Name);
