@@ -33,6 +33,25 @@ namespace berjmapper.test
             }
 
         }
-      
+
+
+        [Fact]
+        public void Map_NullSource_ReturnsNull()
+        {
+            SourceClass source = null;
+            var destination = BerjMapper<SourceClass, DestinationClass>.Convert(source);
+
+            Assert.Null(destination);
+        }
+
+        [Fact]
+        public void ConvertList_NullSource_ReturnsNull()
+        {
+            List<SourceClass> sourceList = null;
+
+            var destinationList = BerjMapper<SourceClass, DestinationClass>.ConvertList(sourceList);
+
+            Assert.Null(destinationList);
+        }
     }
 }
