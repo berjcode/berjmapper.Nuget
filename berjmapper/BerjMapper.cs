@@ -1,6 +1,8 @@
-﻿namespace berjmapper;
+﻿using System.Reflection;
 
-//// <summary xml:lang="tr">
+namespace berjmapper;
+
+///  <summary xml:lang="tr">
 /// BerjMapper, kaynak ve hedef nesnelerini birbirine dönüştürür.
 /// </summary>
 /// <typeparam name="TSource"></typeparam>
@@ -15,6 +17,16 @@
 /// <typeparam name="TDestination"></typeparam>
 public class BerjMapper<TSource, TDestination>
 {
+    private Dictionary<string, PropertyInfo> sourcePropertyCache;
+    private Dictionary<string, PropertyInfo> destinationPropertyCache;
+
+    public BerjMapper()
+    {
+        sourcePropertyCache = typeof(TSource).GetProperties().ToDictionary(p => p.Name, p => p);
+        destinationPropertyCache = typeof(TDestination).GetProperties().ToDictionary(p => p.Name, propa => p);
+
+
+    }
 
     /// <summary xml:lang="en">
     /// Give the source object. Map Takes Resources.
@@ -30,6 +42,10 @@ public class BerjMapper<TSource, TDestination>
     /// <returns></returns>
     public TDestination Map(TSource source)
     {
+        if (source == null)
+        {
+            return default(TDestination);
+        }
         var destination = Activator.CreateInstance<TDestination>();
         var sourceProperties = typeof(TSource).GetProperties();
         var desinationProperties = typeof(TDestination).GetProperties();
@@ -45,6 +61,11 @@ public class BerjMapper<TSource, TDestination>
 
     public List<TDestination> Map(List<TSource> source)
     {
+        if (source == null)
+        {
+            return null;
+        }
+
         var destinationList = new List<TDestination>();
 
         foreach (var sourceItem in source)
@@ -84,6 +105,11 @@ public class BerjMapper<TSource, TDestination>
 
     public TSource Map(TDestination destination)
     {
+        if (destination == null)
+        {
+            return default(TSource);
+        }
+
         var source = Activator.CreateInstance<TSource>();
         var sourceProperties = typeof(TSource).GetProperties();
         var destinationProperties = destination.GetType().GetProperties();

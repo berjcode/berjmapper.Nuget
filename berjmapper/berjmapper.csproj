@@ -4,6 +4,35 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>berjmapper</PackageId>
+    <Title>berjmapper</Title>
+    <Version>1.0.0</Version>
+    <Authors>berjcode</Authors>
+    <Company>berjcode</Company>
+    <Product>berjmapper</Product>
+    <Description>It makes our work easier by equating 2 different objects to each other.</Description>
+    <Copyright>Berjcode 2023</Copyright>
+    <PackageProjectUrl>https://github.com/berjcode/berjmapper.Nuget</PackageProjectUrl>
+    <PackageIcon>berj.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/berjcode/berjmapper.Nuget</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>mapper, netcore</PackageTags>
+    <NeutralLanguage>tk</NeutralLanguage>
+    <PackageReleaseNotes>It makes our work easier by equating 2 different objects to each other. deficiencies will be corrected with new updates.</PackageReleaseNotes>
+    <PackageOutputPath>C:\Users\abdbl\OneDrive\Masaüstü\berjmapper.Nuget\berjmapper\bin\Debug\net7.0</PackageOutputPath>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\berj.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

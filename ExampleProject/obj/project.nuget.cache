@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8WNUFwFjpDW7Yku606uEIn1sbZSLMKSk9OZd//9hN/6Y5KYuolpV9/NSIuCBeArmIXS2SZp5VNHR6Y4B8iT2Gg==",
+  "dgSpecHash": "fUY1C2cU30Z7wadaNNIaRu8VnE4ZK1RuOlxxh3q97DMHMD0CKUuYJH8liP2s1A6D7jofIwJoyUSKwm5kBkjtBw==",
   "success": true,
   "projectFilePath": "C:\\Users\\abdbl\\OneDrive\\Masaüstü\\berjmapper.Nuget\\ExampleProject\\ExampleProject.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\abdbl\\.nuget\\packages\\berjmapper\\1.0.0\\berjmapper.1.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
