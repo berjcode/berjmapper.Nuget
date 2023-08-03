@@ -53,5 +53,20 @@ namespace berjmapper.test
 
             Assert.Null(destinationList);
         }
+
+        [Fact]
+        public void Map_SingleObject_ConvertIsSuccessfuly2()
+        {
+            // Arrange
+            var source = new SourceClass { Id = 1, Name = "Source Object", Surname = "Test Surname" };
+
+            // Act
+            var destination = BerjMapper<SourceClass, DestinationClass>.Convert(source);
+
+            // Assert
+            Assert.Equal(source.Id, destination.Id);
+            Assert.Equal(source.Name, destination.Name);
+            Assert.Equal(source.Surname, null); 
+        }
     }
 }
