@@ -2,8 +2,6 @@
 using ExampleProject;
 
 
-Console.WriteLine("Hello, World!");
-
 var Product = new Product
 {
     Id = 1,
@@ -12,63 +10,45 @@ var Product = new Product
 };
 
 
-
-var ProductDtoToProduct = new ProductDto { Id = 2, Name = "Abdullah" };
-
-
 Console.WriteLine("----------- Converting Product to ProductDto ------------");
 
-var berjMapper = new BerjMapper<Product, ProductDto>();
-var convertedproductDto = berjMapper.Map(Product);
-Console.WriteLine(convertedproductDto.Id);
-Console.WriteLine(convertedproductDto.Name);
+var productDto = BerjMapper<Product, ProductDto>.Convert(Product);
 
+
+Console.WriteLine(productDto.Id);
+Console.WriteLine(productDto.Name);
 
 
 
 Console.WriteLine("----------- Converting ProductDto to Product ------------");
 
+var testProductDto = new ProductDto
+{
+    Id = 1,
+    Name = "berjCode",
+};
 
-var convertedProduct = berjMapper.Map(ProductDtoToProduct);
 
+var productTest = BerjMapper<ProductDto, Product>.Convert(testProductDto);
 
-Console.WriteLine(convertedProduct.Id);
-Console.WriteLine(convertedProduct.Name);
-
-
-Console.WriteLine("----------- Test ------------");
-
-//var stopwatch = new Stopwatch();
-//stopwatch.Start();
-//for (int i = 0; i < 100000; i++)
-//{
-//    var source = new ProductDto();
-//    var destination = new berjMapper(Product,ProductDto>);
-//}
-////stopwatch.Stop();
-//Console.WriteLine($"Elapsed time: {stopwatch.ElapsedMilliseconds}ms");
+Console.WriteLine(productTest.Id);
+Console.WriteLine(productTest.Name);
 
 Console.WriteLine("----------- ProductListDto ------------");
-
 var products = new List<Product>()
 {
     new Product { Id = 1, Name = "Product 1" },
-    new Product { Id = 2, Name = "Product 2"},
+    new Product { Id = 2, Name = "Product 2" },
     new Product { Id = 3, Name = "Product 3" },
 };
 
-var berjMapper2 = new BerjMapper<Product, ProductListDto>();
-//products => converting to ProductListDto.
-var convertedProductListDto = berjMapper2.Map(products);
+var productListTest = BerjMapper<Product, ProductListDto>.ConvertList(products);
 
-foreach(var productListDto in convertedProductListDto)
+foreach (var productListDto in productListTest)
 {
     Console.WriteLine(productListDto.Id);
     Console.WriteLine(productListDto.Name);
 }
-
-
-
 Console.WriteLine("----------- Create Product  ------------");
 
 Console.Write("product ID Giriniz: ");
@@ -83,8 +63,7 @@ ProductCreateDto productCreateDto = new ProductCreateDto
     Name = name
 };
 
-var berjMapper3 = new BerjMapper<ProductCreateDto, Product>();
-Product product = berjMapper3.Map(productCreateDto);
+var createProductTest = BerjMapper<ProductCreateDto, Product>.Convert(productCreateDto);
 
-Console.WriteLine("Product ID: " + product.Id);
-Console.WriteLine("Product Name: " + product.Name);
+Console.WriteLine("Product ID: " + createProductTest.Id);
+Console.WriteLine("Product Name: " + createProductTest.Name);

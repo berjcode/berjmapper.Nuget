@@ -1,7 +1,7 @@
 # Feature
 
 
-I'm writing a library to convert different types of objects to each other.
+The BerjMapper class provides a user-friendly interface to manage conversions between two different data types and helps to avoid duplicate work in the code.
 
 Errors are corrected as a result of feedback.
 
@@ -14,8 +14,25 @@ Errors are corrected as a result of feedback.
 
   dotnet add package 
 ```
+
+# Information
 ```
-# Use  ProductDto
+var product = new Product
+{
+    Id = 1,
+    Name = "berjCode",
+    Description = "offers pride"
+};
+
+var productDto = BerjMapper<Product, ProductDto>.Convert(product);
+first parameter should be source, second should be destination. In Convert, it must be the converted type.
+here product is converted to productdto.
+  
+```
+
+
+```
+# Use  Converting Product to ProductDto
 var Product = new Product
 {
     Id = 1,
@@ -24,68 +41,49 @@ var Product = new Product
 };
 
 
-var berjMapper = new BerjMapper<Product, ProductDto>();
-var convertedproductDto = berjMapper.Map(Product); //+
-Console.WriteLine(convertedproductDto.Id);
-Console.WriteLine(convertedproductDto.Name);
-```
-```
-##  The Exact Opposite
+Console.WriteLine("----------- Converting Product to ProductDto ------------");
 
-var convertedProduct = berjMapper.Map(ProductDtoToProduct); // +
+var productDto = BerjMapper<Product, ProductDto>.Convert(Product);
 
 
-Console.WriteLine(convertedProduct.Id);
-Console.WriteLine(convertedProduct.Name);
+Console.WriteLine(productDto.Id);
+Console.WriteLine(productDto.Name);
+
 
 ```
     
-....
-
 ```
 ## ProductListDto
    
-   var products = new List<Product>()
+Console.WriteLine("----------- ProductListDto ------------");
+var products = new List<Product>()
 {
     new Product { Id = 1, Name = "Product 1" },
-    new Product { Id = 2, Name = "Product 2"},
+    new Product { Id = 2, Name = "Product 2" },
     new Product { Id = 3, Name = "Product 3" },
 };
 
-var berjMapper2 = new BerjMapper<Product, ProductListDto>();
-//products => converting to ProductListDto.
-var convertedProductListDto = berjMapper2.Map(products);
+var productListTest = BerjMapper<Product, ProductListDto>.ConvertList(products);
 
-foreach(var productListDto in convertedProductListDto)
+foreach (var productListDto in productListTest)
 {
     Console.WriteLine(productListDto.Id);
     Console.WriteLine(productListDto.Name);
 }
+Console.WriteLine(productListDto.Name);
+
 ```
 
 ....
 ```
-## ProductCreateDto
+##  Converting CreateProductDto To Product
    
- Console.WriteLine("----------- Create Product  ------------");
+Console.WriteLine("----------- CreateProductDto To Product  ------------");
 
-Console.Write("product ID Giriniz: ");
-int id = int.Parse(Console.ReadLine());
+var createProductDtoTest = BerjMapper<ProductCreateDto, Product>.Convert(productCreateDto);
 
-Console.Write(" product name Giriniz: ");
-string name = Console.ReadLine();
-
-ProductCreateDto productCreateDto = new ProductCreateDto
-{
-    Id = id,
-    Name = name
-};
-
-var berjMapper3 = new BerjMapper<ProductCreateDto, Product>();
-Product product = berjMapper3.Map(productCreateDto);
-
-Console.WriteLine("Product ID: " + product.Id);
-Console.WriteLine("Product Name: " + product.Name);
+Console.WriteLine("Product ID: " + createProductTest.Id);
+Console.WriteLine("Product Name: " + createProductTest.Name);
 ```
 ```
 

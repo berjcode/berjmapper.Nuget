@@ -23,10 +23,10 @@ public class BerjMapper<TSource, TDestination>
     public BerjMapper()
     {
         sourcePropertyCache = typeof(TSource).GetProperties().ToDictionary(p => p.Name, p => p);
-        destinationPropertyCache = typeof(TDestination).GetProperties().ToDictionary(p => p.Name, propa => p);
-
-
+        destinationPropertyCache = typeof(TDestination).GetProperties().ToDictionary(p => p.Name, p => p);
     }
+
+    #region Methods Mapping 
 
     /// <summary xml:lang="en">
     /// Give the source object. Map Takes Resources.
@@ -47,13 +47,15 @@ public class BerjMapper<TSource, TDestination>
             return default(TDestination);
         }
         var destination = Activator.CreateInstance<TDestination>();
-        var sourceProperties = typeof(TSource).GetProperties();
-        var desinationProperties = typeof(TDestination).GetProperties();
-        foreach (var sourceProperty in sourceProperties)
+
+        foreach (var sourceProperty in sourcePropertyCache.Values)
         {
-            var desinationProperty = desinationProperties.FirstOrDefault(x => x.Name == sourceProperty.Name);
-            if (desinationProperty != null && desinationProperty.PropertyType == sourceProperty.PropertyType)
-                desinationProperty.SetValue(destination, sourceProperty.GetValue(source));
+            if (destinationPropertyCache.TryGetValue(sourceProperty.Name, out var destinationProperty) &&
+            destinationProperty.PropertyType == sourceProperty.PropertyType)
+            {
+                var sourceValue = sourceProperty.GetValue(source);
+                destinationProperty.SetValue(destination, sourceValue);
+            }
 
         }
         return destination;
@@ -71,15 +73,14 @@ public class BerjMapper<TSource, TDestination>
         foreach (var sourceItem in source)
         {
             var destination = Activator.CreateInstance<TDestination>();
-            var sourceProperties = typeof(TSource).GetProperties();
-            var desinationProperties = typeof(TDestination).GetProperties();
 
-            foreach (var sourceProperty in sourceProperties)
+            foreach (var sourceProperty in sourcePropertyCache.Values)
             {
-                var desinationProperty = desinationProperties.FirstOrDefault(x => x.Name == sourceProperty.Name);
-                if (desinationProperty != null && desinationProperty.PropertyType == sourceProperty.PropertyType)
+                if (destinationPropertyCache.TryGetValue(sourceProperty.Name, out var destinationProperty) &&
+                    destinationProperty.PropertyType == sourceProperty.PropertyType)
                 {
-                    desinationProperty.SetValue(destination, sourceProperty.GetValue(sourceItem));
+                    var sourceValue = sourceProperty.GetValue(sourceItem);
+                    destinationProperty.SetValue(destination, sourceValue);
                 }
             }
 
@@ -111,19 +112,33 @@ public class BerjMapper<TSource, TDestination>
         }
 
         var source = Activator.CreateInstance<TSource>();
-        var sourceProperties = typeof(TSource).GetProperties();
-        var destinationProperties = destination.GetType().GetProperties();
 
-        foreach (var sourceProperty in sourceProperties)
+        foreach (var sourceProperty in sourcePropertyCache.Values)
         {
-            var destinationProperty = Array.Find(destinationProperties, prop => prop.Name == sourceProperty.Name);
-
-            if (destinationProperty != null && destinationProperty.PropertyType == sourceProperty.PropertyType)
+            if (destinationPropertyCache.TryGetValue(sourceProperty.Name, out var destinationProperty) &&
+                destinationProperty.PropertyType == sourceProperty.PropertyType)
             {
                 var destinationValue = destinationProperty.GetValue(destination);
                 sourceProperty.SetValue(source, destinationValue);
             }
         }
+
         return source;
     }
+    #endregion
+
+
+    #region HelperMethods
+    public static TDestination Convert(TSource source)
+    {
+        var mapper = new BerjMapper<TSource, TDestination>();
+        return mapper.Map(source);
+    }
+
+    public static List<TDestination> ConvertList(List<TSource> source)
+    {
+        var mapper = new BerjMapper<TSource, TDestination>();
+        return mapper.Map(source);
+    }
+    #endregion
 }

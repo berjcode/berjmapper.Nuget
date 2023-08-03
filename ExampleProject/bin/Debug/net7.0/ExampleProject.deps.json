@@ -8,13 +8,13 @@
     ".NETCoreApp,Version=v7.0": {
       "ExampleProject/1.0.0": {
         "dependencies": {
-          "berjmapper": "1.0.0"
+          "berjmapper": "1.0.1"
         },
         "runtime": {
           "ExampleProject.dll": {}
         }
       },
-      "berjmapper/1.0.0": {
+      "berjmapper/1.0.1": {
         "runtime": {
           "berjmapper.dll": {}
         }
@@ -27,7 +27,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "berjmapper/1.0.0": {
+    "berjmapper/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "berjmapper/1.0.0": {
+      "berjmapper/1.0.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "compile": {
@@ -15,7 +15,7 @@
     }
   },
   "libraries": {
-    "berjmapper/1.0.0": {
+    "berjmapper/1.0.1": {
       "type": "project",
       "path": "../berjmapper/berjmapper.csproj",
       "msbuildProject": "../berjmapper/berjmapper.csproj"
@@ -23,7 +23,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "berjmapper >= 1.0.0"
+      "berjmapper >= 1.0.1"
     ]
   },
   "packageFolders": {
