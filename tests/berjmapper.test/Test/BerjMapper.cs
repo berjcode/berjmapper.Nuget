@@ -1,8 +1,9 @@
 using berjmapper.test.Classes;
+using Xunit;
 
 namespace berjmapper.test
 {
-    public class UnitTest1
+    public class BerjMapper
     {
         [Fact]
         public void Map_SingleObject_ConvertIsSuccessfuly()
