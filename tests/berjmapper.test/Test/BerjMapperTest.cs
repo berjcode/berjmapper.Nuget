@@ -110,5 +110,26 @@ namespace berjmapper.test.Test
                 Assert.Equal(destinationList[i].Name, sourceList[i].Name);
             }
         }
+
+
+        [Fact]
+        public void ConvertReverse_Should_Handle_Null_Destination()
+        {
+            // Arrange
+            DestinationClass destination = null;
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => BerjMapper.BerjMapper.ConvertReverse<DestinationClass, SourceClass>(destination));
+        }
+
+        [Fact]
+        public void ConvertListReverse_Should_Handle_Null_DestinationList()
+        {
+            //Arrange 
+            List<DestinationClass> destinationList = null;
+
+            Assert.Throws<ArgumentNullException>(() => BerjMapper.BerjMapper.ConvertListReverse<DestinationClass, SourceClass>(destinationList));
+        }
+
     }
 }
