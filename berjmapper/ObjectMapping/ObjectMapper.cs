@@ -27,8 +27,6 @@ public class ObjectMapper<TSource, TDestination>
         destinationPropertyCache = typeof(TDestination).GetProperties().ToDictionary(p => p.Name, p => p);
     }
 
-    #region Methods Mapping 
-
     /// <summary xml:lang="en">
     /// Give the source object. Map Takes Resources.
     /// </summary>
@@ -91,8 +89,6 @@ public class ObjectMapper<TSource, TDestination>
 
         return destinationList;
     }
-
-
 
 
     /// <summary xml:lang="en">
@@ -159,8 +155,5 @@ public class ObjectMapper<TSource, TDestination>
 
         return sourceList;
     }
-    #endregion
-
-
 
 }
