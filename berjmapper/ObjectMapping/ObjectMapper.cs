@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using berjmapper.Messagess;
+using System.Reflection;
 
 namespace berjmapper.ObjectMapping;
 
@@ -44,7 +45,7 @@ public class ObjectMapper<TSource, TDestination>
     {
         if (source == null)
         {
-            return default;
+            throw new ArgumentNullException(nameof(source), ExceptionMessage.ArgumentNullExceptionSourceMessage);
         }
 
         var destination = Activator.CreateInstance<TDestination>();
@@ -66,7 +67,7 @@ public class ObjectMapper<TSource, TDestination>
     {
         if (source == null)
         {
-            return null;
+            throw new ArgumentNullException(nameof(source), ExceptionMessage.ArgumentNullExceptionnSourceListMessage);
         }
 
         var destinationList = new List<TDestination>();
@@ -111,7 +112,7 @@ public class ObjectMapper<TSource, TDestination>
     {
         if (destination == null)
         {
-            return default;
+            throw new ArgumentNullException(nameof(destination), ExceptionMessage.ArgumentNullExceptionDestinationMessage);
         }
 
         var source = Activator.CreateInstance<TSource>();
@@ -124,10 +125,39 @@ public class ObjectMapper<TSource, TDestination>
                 var destinationValue = destinationProperty.GetValue(destination);
                 sourceProperty.SetValue(source, destinationValue);
             }
-          
+
         }
 
         return source;
+    }
+
+    public List<TSource> MapToSource(List<TDestination> destinationList)
+    {
+        if (destinationList == null)
+        {
+            throw new ArgumentNullException(nameof(destinationList), ExceptionMessage.ArgumentNullExceptionDestinationListMessage);
+        }
+
+        var sourceList = new List<TSource>();
+
+        foreach (var destinationItem in destinationList)
+        {
+            var source = Activator.CreateInstance<TSource>();
+
+            foreach (var destinationProperty in destinationPropertyCache.Values)
+            {
+                if (sourcePropertyCache.TryGetValue(destinationProperty.Name, out var sourceProperty) &&
+                    sourceProperty.PropertyType == destinationProperty.PropertyType)
+                {
+                    var destinationValue = destinationProperty.GetValue(destinationItem);
+                    sourceProperty.SetValue(source, destinationValue);
+                }
+            }
+
+            sourceList.Add(source);
+        }
+
+        return sourceList;
     }
     #endregion
 
