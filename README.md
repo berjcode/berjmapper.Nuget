@@ -12,7 +12,7 @@ Errors are corrected as a result of feedback.
 # Install
 ```
 
-  dotnet add package 
+  dotnet add package  dotnet add package berjmapper --version 1.0.2
 ```
 
 # Information
