@@ -1,5 +1,6 @@
 using berjmapper.ObjectMapping;
 using berjmapper.test.Classes;
+using System.Xml.Linq;
 using Xunit;
 
 namespace berjmapper.test.Test
@@ -69,6 +70,45 @@ namespace berjmapper.test.Test
             // Assert
             Assert.Equal(source.Id, destination.Id);
             Assert.Equal(source.Name, destination.Name);
+        }
+
+        [Fact]
+        public void ConvertReverse_Should_ConvertDestinationToSource()
+        {
+            //Arrange
+            var destiantion = new DestinationClass { Id = 1, Name = "berjcode" };
+
+            //Act
+
+            var source = BerjMapper.BerjMapper.ConvertReverse<DestinationClass, SourceClass>(destiantion);
+
+            //Assert
+            Assert.NotNull(source);
+            Assert.Equal(destiantion.Id, source.Id);
+            Assert.Equal(destiantion.Name, source.Name);
+
+        }
+
+        [Fact]
+        public void ConvertListReverse_Should_DestinationListToSourceList()
+        {
+            //Arrange
+            var destinationList = new List<DestinationClass> {
+           new  DestinationClass{ Id = 1, Name = "berjcode" },
+            new DestinationClass { Id = 2, Name = "berjcodev2" },
+        };
+
+            //Act
+            var sourceList = BerjMapper.BerjMapper.ConvertListReverse<DestinationClass, SourceClass>(destinationList);
+
+            //Assert
+            Assert.NotNull(sourceList);
+            Assert.Equal(destinationList.Count, sourceList.Count);
+            for (int i = 0; i < destinationList.Count; i++)
+            {
+                Assert.Equal(destinationList[i].Id, sourceList[i].Id);
+                Assert.Equal(destinationList[i].Name, sourceList[i].Name);
+            }
         }
     }
 }
