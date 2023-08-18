@@ -1,6 +1,6 @@
-﻿using berjmapper.Main;
+﻿using berjmapper.ObjectMapping;
 
-namespace berjmapper.Helpers;
+namespace berjmapper.BerjMapper;
 
 public static class BerjMapper
 {

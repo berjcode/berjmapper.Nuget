@@ -1,5 +1,4 @@
-﻿using berjmapper.Helpers;
-using berjmapper.Main;
+﻿using berjmapper.BerjMapper;
 using ExampleProject;
 
 

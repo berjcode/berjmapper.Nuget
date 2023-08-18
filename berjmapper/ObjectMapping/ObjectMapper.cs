@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace berjmapper.Main;
+namespace berjmapper.ObjectMapping;
 
 ///  <summary xml:lang="tr">
 /// BerjMapper, kaynak ve hedef nesnelerini birbirine dönüştürür.
@@ -46,18 +46,19 @@ public class ObjectMapper<TSource, TDestination>
         {
             return default;
         }
+
         var destination = Activator.CreateInstance<TDestination>();
 
         foreach (var sourceProperty in sourcePropertyCache.Values)
         {
             if (destinationPropertyCache.TryGetValue(sourceProperty.Name, out var destinationProperty) &&
-            destinationProperty.PropertyType == sourceProperty.PropertyType)
+                destinationProperty.PropertyType == sourceProperty.PropertyType)
             {
                 var sourceValue = sourceProperty.GetValue(source);
                 destinationProperty.SetValue(destination, sourceValue);
             }
-
         }
+
         return destination;
     }
 
@@ -91,6 +92,8 @@ public class ObjectMapper<TSource, TDestination>
     }
 
 
+
+
     /// <summary xml:lang="en">
     /// It takes the target and converts it to the source. Recommended when you do two conversions at the same time.
     /// </summary>
@@ -113,14 +116,15 @@ public class ObjectMapper<TSource, TDestination>
 
         var source = Activator.CreateInstance<TSource>();
 
-        foreach (var sourceProperty in sourcePropertyCache.Values)
+        foreach (var destinationProperty in destinationPropertyCache.Values)
         {
-            if (destinationPropertyCache.TryGetValue(sourceProperty.Name, out var destinationProperty) &&
-                destinationProperty.PropertyType == sourceProperty.PropertyType)
+            if (sourcePropertyCache.TryGetValue(destinationProperty.Name, out var sourceProperty) &&
+                sourceProperty.PropertyType == destinationProperty.PropertyType)
             {
                 var destinationValue = destinationProperty.GetValue(destination);
                 sourceProperty.SetValue(source, destinationValue);
             }
+          
         }
 
         return source;
