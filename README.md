@@ -12,7 +12,7 @@ Errors are corrected as a result of feedback.
 # Install
 ```
 
-  dotnet add package  dotnet add package berjmapper --version 1.0.2
+  dotnet add package  dotnet add package berjmapper --version 1.0.2.1
 ```
 
 # Information
@@ -21,7 +21,7 @@ var product = new Product
 {
     Id = 1,
     Name = "berjCode",
-    Description = "offers pride"
+    Description = "OpenSource"
 };
 
 var productDto = BerjMapper<Product, ProductDto>.Convert(product);
@@ -37,7 +37,7 @@ var Product = new Product
 {
     Id = 1,
     Name = "berjCode",
-    Description = "offers pride"
+    Description = "OpenSource"
 };
 
 
