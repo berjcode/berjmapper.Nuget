@@ -51,9 +51,25 @@ Console.WriteLine(productDto.Name);
 
 
 ```
+```
+# Use  Converting ProductDto to Product
+
+var testProductDto = new ProductDto
+{
+    Id = 1,
+    Name = "berjCode",
+};
+
+
+var productTest = BerjMapper.Convert<ProductDto, Product>(testProductDto);
+
+Console.WriteLine(productTest.Id);
+Console.WriteLine(productTest.Name);
+
+```
     
 ```
-## ProductListDto
+## Converting Product  To ProductListDto
    
 Console.WriteLine("----------- ProductListDto ------------");
 var products = new List<Product>()
@@ -71,6 +87,26 @@ foreach (var productListDto in productListTest)
     Console.WriteLine(productListDto.Name);
 }
 Console.WriteLine(productListDto.Name);
+
+```
+
+```
+## Converting ProductListDto  To Product
+   
+var productListDtoObject = new List<ProductListDto>()
+{
+    new ProductListDto { Id = 1, Name = "Product-1 V2" },
+    new ProductListDto { Id = 2, Name = "Product-2 V2" },
+    new ProductListDto { Id = 3, Name = "Product-3 V2" },
+};
+
+var converProductListDtoToProduct = BerjMapper.ConvertList<ProductListDto, Product>(productListDtoObject);
+
+foreach (var product in converProductListDtoToProduct)
+{
+    Console.WriteLine(product.Id);
+    Console.WriteLine(product.Name);
+}
 
 ```
 
