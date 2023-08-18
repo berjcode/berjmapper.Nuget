@@ -1,7 +1,8 @@
+using berjmapper.Main;
 using berjmapper.test.Classes;
 using Xunit;
 
-namespace berjmapper.test
+namespace berjmapper.test.Test
 {
     public class BerjMapper
     {
@@ -10,10 +11,10 @@ namespace berjmapper.test
         {
             var source = new SourceClass { Id = 1, Name = "Source Object" };
 
-            var destination = BerjMapper<SourceClass, DestinationClass>.Convert(source);
+            var destination = ObjectMapper<SourceClass, DestinationClass>.Convert(source);
 
             Assert.Equal(source.Id, destination.Id);
-            Assert.Equal(source.Name,destination.Name);
+            Assert.Equal(source.Name, destination.Name);
         }
         [Fact]
         public void Convert_ListOfObjectsIsSuccessfuly()
@@ -24,10 +25,10 @@ namespace berjmapper.test
                 new SourceClass {Id = 2, Name= "Abdullah"}
             };
 
-            var destinationList = BerjMapper<SourceClass, DestinationClass>.ConvertList(sourceList);
+            var destinationList = ObjectMapper<SourceClass, DestinationClass>.ConvertList(sourceList);
 
             Assert.Equal(sourceList.Count, destinationList.Count);
-            for(int i= 0; i> sourceList.Count; i++)
+            for (int i = 0; i > sourceList.Count; i++)
             {
                 Assert.Equal(sourceList[i].Id, destinationList[i].Id);
                 Assert.Equal(sourceList[i].Name, destinationList[i].Name);
@@ -40,7 +41,7 @@ namespace berjmapper.test
         public void Map_NullSource_ReturnsNull()
         {
             SourceClass source = null;
-            var destination = BerjMapper<SourceClass, DestinationClass>.Convert(source);
+            var destination = ObjectMapper<SourceClass, DestinationClass>.Convert(source);
 
             Assert.Null(destination);
         }
@@ -50,7 +51,7 @@ namespace berjmapper.test
         {
             List<SourceClass> sourceList = null;
 
-            var destinationList = BerjMapper<SourceClass, DestinationClass>.ConvertList(sourceList);
+            var destinationList = ObjectMapper<SourceClass, DestinationClass>.ConvertList(sourceList);
 
             Assert.Null(destinationList);
         }
@@ -62,12 +63,12 @@ namespace berjmapper.test
             var source = new SourceClass { Id = 1, Name = "Source Object", Surname = "Test Surname" };
 
             // Act
-            var destination = BerjMapper<SourceClass, DestinationClass>.Convert(source);
+            var destination = ObjectMapper<SourceClass, DestinationClass>.Convert(source);
 
             // Assert
             Assert.Equal(source.Id, destination.Id);
             Assert.Equal(source.Name, destination.Name);
-            Assert.Equal(source.Surname, null); 
+            Assert.Equal(source.Surname, null);
         }
     }
 }

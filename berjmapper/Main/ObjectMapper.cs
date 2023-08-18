@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace berjmapper;
+namespace berjmapper.Main;
 
 ///  <summary xml:lang="tr">
 /// BerjMapper, kaynak ve hedef nesnelerini birbirine dönüştürür.
@@ -15,12 +15,12 @@ namespace berjmapper;
 /// </summary>
 /// <typeparam name="TSource"></typeparam>
 /// <typeparam name="TDestination"></typeparam>
-public class BerjMapper<TSource, TDestination>
+public class ObjectMapper<TSource, TDestination>
 {
     private Dictionary<string, PropertyInfo> sourcePropertyCache;
     private Dictionary<string, PropertyInfo> destinationPropertyCache;
 
-    public BerjMapper()
+    public ObjectMapper()
     {
         sourcePropertyCache = typeof(TSource).GetProperties().ToDictionary(p => p.Name, p => p);
         destinationPropertyCache = typeof(TDestination).GetProperties().ToDictionary(p => p.Name, p => p);
@@ -44,7 +44,7 @@ public class BerjMapper<TSource, TDestination>
     {
         if (source == null)
         {
-            return default(TDestination);
+            return default;
         }
         var destination = Activator.CreateInstance<TDestination>();
 
@@ -108,7 +108,7 @@ public class BerjMapper<TSource, TDestination>
     {
         if (destination == null)
         {
-            return default(TSource);
+            return default;
         }
 
         var source = Activator.CreateInstance<TSource>();
@@ -128,17 +128,5 @@ public class BerjMapper<TSource, TDestination>
     #endregion
 
 
-    #region HelperMethods
-    public static TDestination Convert(TSource source)
-    {
-        var mapper = new BerjMapper<TSource, TDestination>();
-        return mapper.Map(source);
-    }
 
-    public static List<TDestination> ConvertList(List<TSource> source)
-    {
-        var mapper = new BerjMapper<TSource, TDestination>();
-        return mapper.Map(source);
-    }
-    #endregion
 }

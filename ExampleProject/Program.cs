@@ -1,4 +1,5 @@
-﻿using berjmapper;
+﻿using berjmapper.Helpers;
+using berjmapper.Main;
 using ExampleProject;
 
 
@@ -12,7 +13,7 @@ var Product = new Product
 
 Console.WriteLine("----------- Converting Product to ProductDto ------------");
 
-var productDto = BerjMapper<Product, ProductDto>.Convert(Product);
+var productDto = BerjMapper.Convert<Product, ProductDto>(Product);
 
 
 Console.WriteLine(productDto.Id);
@@ -29,7 +30,7 @@ var testProductDto = new ProductDto
 };
 
 
-var productTest = BerjMapper<ProductDto, Product>.Convert(testProductDto);
+var productTest = BerjMapper.Convert<ProductDto, Product>(testProductDto);
 
 Console.WriteLine(productTest.Id);
 Console.WriteLine(productTest.Name);
@@ -42,7 +43,7 @@ var products = new List<Product>()
     new Product { Id = 3, Name = "Product 3" },
 };
 
-var productListTest = BerjMapper<Product, ProductListDto>.ConvertList(products);
+var productListTest = BerjMapper.ConvertList<Product, ProductListDto>(products);
 
 foreach (var productListDto in productListTest)
 {
@@ -63,7 +64,7 @@ ProductCreateDto productCreateDto = new ProductCreateDto
     Name = name
 };
 
-var createProductTest = BerjMapper<ProductCreateDto, Product>.Convert(productCreateDto);
+var createProductTest = BerjMapper.Convert<ProductCreateDto, Product>(productCreateDto);
 
 Console.WriteLine("Product ID: " + createProductTest.Id);
 Console.WriteLine("Product Name: " + createProductTest.Name);
