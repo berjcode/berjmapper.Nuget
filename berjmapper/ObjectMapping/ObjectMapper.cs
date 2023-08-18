@@ -131,7 +131,7 @@ public class ObjectMapper<TSource, TDestination>
         return source;
     }
 
-    public List<TSource> MapToSource(List<TDestination> destinationList)
+    public List<TSource> Map(List<TDestination> destinationList)
     {
         if (destinationList == null)
         {
